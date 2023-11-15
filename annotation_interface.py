@@ -20,7 +20,7 @@ st.markdown(guideline)
 
 # open the jsonl containing all source articles into a dictionary
 # each line is a json contains two entries: "id" and "text"
-with open("data/responses_gpt-4_-3518530352341467729.json", "r") as f:
+with open("responses_gpt-4_-3518530352341467729.json", "r") as f:
     source_articles = json.load(f)
     # turn the list of jsons into a dictionary
     source_articles = {article["id"]: article for article in source_articles}
