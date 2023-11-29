@@ -29,7 +29,6 @@ if not to_download:
         source_articles = json.load(f)
         # turn the list of jsons into a dictionary
         source_articles = {article["id"]: article for article in source_articles}
-    # print(source_articles.keys())
     # get the text of the article
     article_text = source_articles[summary_id]['story'].replace('\n', '\n\n')
     summary_text = source_articles[summary_id]['summary']
@@ -39,7 +38,7 @@ if not to_download:
     st.markdown(article_text)
     st.markdown("### Summary")
     st.markdown(summary_text)
-    st.markdown('### Possible inconsistency identified in summary')
+    st.markdown('### Possible AI-generated inconsistency identified in summary')
     for line in inconsistency_proof:
         st.markdown(line)
 
@@ -70,7 +69,7 @@ if not to_download:
 
     binary_choice_list = ["Yes", "No", "N/A"]
     selected["proof_correct"] = st.radio(
-        " Is the possible inconsistency identified in the summary correct? "
+        " Is the possible AI-generated inconsistency identified in the summary correct? "
         + "This question can be marked as N/A if the summary is consistent.",
         options=binary_choice_list,
         index=0
@@ -80,43 +79,13 @@ if not to_download:
 
     binary_choice_list = ["Yes", "No", "N/A"]
     selected["proof_used"] = st.radio(
-        " Did the possible inconsistency identified in the summary aid in the answer to the first question? "
+        " Did the possible AI-generated inconsistency identified in the summary aid in the answer to the first question? "
         + "This question can be marked as N/A if the summary is consistent.",
         options=binary_choice_list,
         index=0
         if prev_eval is None
         else binary_choice_list.index(prev_eval["annotation"]["proof_used"]),
     )
-
-    # binary_choice_list = ["Yes", "No", "N/A"]
-    # selected["commentary"] = st.radio(
-    #     " If the summary contains any commentary or inferences about the story, is it consistent with how you read the story? ",
-    #     options=binary_choice_list,
-    #     index=0
-    #     if prev_eval is None
-    #     else binary_choice_list.index(prev_eval["annotation"]["commentary"]),
-    # )
-
-    # binary_choice_list = ["1", "2", "3", "4"]
-    # selected["coherent"] = st.radio(
-    #     " Is the summary coherent? "
-    #     + "A coherent summary should have sentences that flow together nicely into a paragraph. ",
-    #     options=binary_choice_list,
-    #     horizontal=True,
-    #     index=0
-    #     if prev_eval is None
-    #     else binary_choice_list.index(prev_eval["annotation"]["coherent"]),
-    # )
-
-    # binary_choice_list = ["1", "2", "3", "4"]
-    # selected["narrative"] = st.radio(
-    #     "  Does the summary capture the overall point of the narrative?",
-    #     options=binary_choice_list,
-    #     horizontal=True,
-    #     index=0
-    #     if prev_eval is None
-    #     else binary_choice_list.index(prev_eval["annotation"]["narrative"]),
-    # )
 
     # create a dictionary to store the annotation
     annotation = {
