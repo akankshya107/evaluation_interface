@@ -42,16 +42,9 @@ if not to_download:
     for line in inconsistency_proof:
         st.markdown(line)
 
-    # Load previous evaluation
     outfolder = f"data/annotations/{username}"
     os.makedirs(outfolder, exist_ok=True)
     output_name = os.path.join(outfolder, f"{summary_id}.jsonl")
-    if os.path.exists(output_name):
-        with open(output_name, "r") as f:
-            prev_eval = json.loads(f.readlines()[-1])
-    else:
-        prev_eval = None
-
     selected = dict()
 
     st.markdown(f"### Summary Evaluation")
@@ -62,29 +55,23 @@ if not to_download:
         + "A consistent summary should only include information that can be inferred from the original story. "
         + "Ignore any commentary for this question. Use the inconsistency identified in the summary as an aid to this question.",
         options=binary_choice_list,
-        index=0
-        if prev_eval is None
-        else binary_choice_list.index(prev_eval["annotation"]["consistent"]),
+        index=0,
     )
 
-    binary_choice_list = ["Yes", "No", "N/A"]
+    binary_choice_list = ["Yes", "No", "NA"]
     selected["proof_correct"] = st.radio(
         " Is the possible AI-generated inconsistency identified in the summary correct? "
         + "This question can be marked as N/A if the summary is consistent.",
         options=binary_choice_list,
-        index=0
-        if prev_eval is None
-        else binary_choice_list.index(prev_eval["annotation"]["proof_correct"]),
+        index=0,
     )
 
-    binary_choice_list = ["Yes", "No", "N/A"]
+    binary_choice_list = ["Yes", "No", "NA"]
     selected["proof_used"] = st.radio(
         " Did the possible AI-generated inconsistency identified in the summary aid in the answer to the first question? "
         + "This question can be marked as N/A if the summary is consistent.",
         options=binary_choice_list,
-        index=0
-        if prev_eval is None
-        else binary_choice_list.index(prev_eval["annotation"]["proof_used"]),
+        index=0,
     )
 
     # create a dictionary to store the annotation
@@ -100,7 +87,7 @@ if not to_download:
     if st.button("Submit"):
         # write the annotation to a json file
         os.makedirs("data/annotations", exist_ok=True)
-        with open(output_name, "a") as f:
+        with open(output_name, "w") as f:
             f.write(json.dumps(annotation))
         # display a success message
         st.success("Annotation submitted successfully!")
@@ -112,7 +99,11 @@ else:
     for output_name in files:
         with open(output_name, "r") as file:
             st.write(output_name)
-            annotations.append(json.loads(file.readline()))
+            try:
+                annotations.append(json.loads(file.readline()))
+            except:
+                st.write("Failed")
+                continue
 
     btn = st.download_button(
             label="Download all annotations",
