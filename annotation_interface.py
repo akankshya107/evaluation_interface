@@ -38,10 +38,8 @@ if not to_download:
     st.markdown(article_text)
     st.markdown("### Summary")
     st.markdown(summary_text)
-    st.markdown('### Possible AI-generated inconsistency identified in summary')
-    for line in inconsistency_proof:
-        st.markdown(line)
 
+    # Load previous evaluation
     outfolder = f"data/annotations/{username}"
     os.makedirs(outfolder, exist_ok=True)
     output_name = os.path.join(outfolder, f"{summary_id}.jsonl")
@@ -52,24 +50,7 @@ if not to_download:
     binary_choice_list = ["Yes", "No"]
     selected["consistent"] = st.radio(
         " Is the information in the summary consistent with the story? "
-        + "A consistent summary should only include information that can be inferred from the original story. "
-        + "Ignore any commentary for this question. Use the inconsistency identified in the summary as an aid to this question.",
-        options=binary_choice_list,
-        index=0,
-    )
-
-    binary_choice_list = ["Yes", "No", "NA"]
-    selected["proof_correct"] = st.radio(
-        " Is the possible AI-generated inconsistency identified in the summary correct? "
-        + "This question can be marked as N/A if the summary is consistent.",
-        options=binary_choice_list,
-        index=0,
-    )
-
-    binary_choice_list = ["Yes", "No", "NA"]
-    selected["proof_used"] = st.radio(
-        " Did the possible AI-generated inconsistency identified in the summary aid in the answer to the first question? "
-        + "This question can be marked as N/A if the summary is consistent.",
+        + "A consistent summary should only include information that can be inferred from the original story. ",
         options=binary_choice_list,
         index=0,
     )
@@ -81,6 +62,7 @@ if not to_download:
         "story": article_text,
         "summary": summary_text,
         "annotation": selected,
+        "expanded" : False,
     }
 
     # create a submit button and refresh the page when the button is clicked
@@ -88,19 +70,55 @@ if not to_download:
         # write the annotation to a json file
         os.makedirs("data/annotations", exist_ok=True)
         with open(output_name, "w") as f:
-            f.write(json.dumps(annotation))
+            f.write(json.dumps(annotation) + "\n")
         # display a success message
         st.success("Annotation submitted successfully!")
 
+    with st.expander("See possible AI-generated inconsistency identified in summary"):
+        annotation["expanded"] = True
+        os.makedirs("data/annotations", exist_ok=True)
+        with open(output_name, "w") as f:
+            f.write(json.dumps(annotation) + "\n")
+        for line in inconsistency_proof:
+            st.markdown(line)
+
+        binary_choice_list = ["Yes", "No"]
+        selected["consistent_resubmit"] = st.radio(
+            " Is the information in the summary consistent with the story? "
+            + "A consistent summary should only include information that can be inferred from the original story. "
+            + "You can use the inconsistency identified in the summary to help answer this question.",
+            options=binary_choice_list,
+            index=0,
+        )
+
+        binary_choice_list = ["Yes", "No", "N/A"]
+        selected["proof_correct"] = st.radio(
+            " Is the possible AI-generated inconsistency identified in the summary correct? "
+            + "This question can be marked as N/A if the summary is consistent.",
+            options=binary_choice_list,
+            index=0,
+        )
+        annotation["annotation"] = selected
+
+        # create a submit button and refresh the page when the button is clicked
+        if st.button("Resubmit"):
+            # write the annotation to a json file
+            os.makedirs("data/annotations", exist_ok=True)
+            with open(output_name, "w") as f:
+                f.write(json.dumps(annotation) + "\n")
+            # display a success message
+            st.success("Annotation resubmitted successfully!")
+
 else:
     # We can download all files.
+    st.write("Only the latest annotations are available.")
     annotations = []
     files = glob.glob(pathname="data/annotations/*/*")
     for output_name in files:
         with open(output_name, "r") as file:
             st.write(output_name)
             try:
-                annotations.append(json.loads(file.readline()))
+                annotations.append(json.loads(file.readlines()[-1]))
             except:
                 st.write("Failed")
                 continue
