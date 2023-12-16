@@ -55,6 +55,28 @@ if not to_download:
         index=0,
     )
 
+    st.markdown("---")
+    st.markdown("#### Possible AI-generated inconsistency identified in summary")
+    for line in inconsistency_proof:
+        st.markdown(line)
+
+    binary_choice_list = ["Yes", "No", "N/A"]
+    selected["proof_correct"] = st.radio(
+        " Is the possible AI-generated inconsistency identified in the summary correct? "
+        + "This question can be marked as N/A if the summary is consistent.",
+        options=binary_choice_list,
+        index=0,
+    )
+    st.markdown("---")
+    st.markdown(f"### Summary Re-evaluation")
+    st.markdown("If the AI-generated inconsistency changes your answer to the first question, account for the change here. Do not change your first answer.")
+    binary_choice_list = ["Yes", "No"]
+    selected["consistent_resubmit"] = st.radio(
+        " Is the information in the summary consistent with the story? "
+        + "A consistent summary should only include information that can be inferred from the original story.",
+        options=binary_choice_list,
+        index=0,
+    )
     # create a dictionary to store the annotation
     annotation = {
         "id": summary_id,
@@ -62,9 +84,7 @@ if not to_download:
         "story": article_text,
         "summary": summary_text,
         "annotation": selected,
-        "expanded" : False,
     }
-
     # create a submit button and refresh the page when the button is clicked
     if st.button("Submit"):
         # write the annotation to a json file
@@ -73,41 +93,6 @@ if not to_download:
             f.write(json.dumps(annotation) + "\n")
         # display a success message
         st.success("Annotation submitted successfully!")
-
-    with st.expander("See possible AI-generated inconsistency identified in summary"):
-        annotation["expanded"] = True
-        os.makedirs("data/annotations", exist_ok=True)
-        with open(output_name, "w") as f:
-            f.write(json.dumps(annotation) + "\n")
-        for line in inconsistency_proof:
-            st.markdown(line)
-
-        binary_choice_list = ["Yes", "No"]
-        selected["consistent_resubmit"] = st.radio(
-            " Is the information in the summary consistent with the story? "
-            + "A consistent summary should only include information that can be inferred from the original story. "
-            + "You can use the inconsistency identified in the summary to help answer this question.",
-            options=binary_choice_list,
-            index=0,
-        )
-
-        binary_choice_list = ["Yes", "No", "N/A"]
-        selected["proof_correct"] = st.radio(
-            " Is the possible AI-generated inconsistency identified in the summary correct? "
-            + "This question can be marked as N/A if the summary is consistent.",
-            options=binary_choice_list,
-            index=0,
-        )
-        annotation["annotation"] = selected
-
-        # create a submit button and refresh the page when the button is clicked
-        if st.button("Resubmit"):
-            # write the annotation to a json file
-            os.makedirs("data/annotations", exist_ok=True)
-            with open(output_name, "w") as f:
-                f.write(json.dumps(annotation) + "\n")
-            # display a success message
-            st.success("Annotation resubmitted successfully!")
 
 else:
     # We can download all files.

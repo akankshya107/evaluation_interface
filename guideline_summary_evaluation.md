@@ -1,8 +1,5 @@
 #### Task Description
-In this task, you will be presented with a short story, along with a summary of the story. Please read both the story and the summary carefully. We will then ask you to answer several questions that attempt to assess the quality of the summary. 
-
-
-We will also include an AI-generated inconsistency of the summary with respect to the story, which **may or may not be correct**. You can choose to see this AI-generated inconsistency and use it help you answer the questions after you answer the first one.
+In this task, you will be presented with a short story, along with a summary of the story. Please read both the story and the summary carefully. We will then ask you to answer a question to assess the quality of the summary. We will also include an AI-generated inconsistency of the summary with respect to the story, which **may or may not be correct**. We will ask you to judge the correctness of this AI-generated inconsistency. We will then ask you if your response to the first question changes with the additional information from the AI-generated inconsistency.
 
 **Warning:** Some of the stories may contain content that readers could find offensive, disturbing, or otherwise unsettling. If you do not feel comfortable with this, please feel free to decline the task.
 
@@ -36,9 +33,7 @@ Below are four example summaries for this story:\
 ---
 
 **Question 1: Is the information in the summary consistent with the story?**\
-The first question asks you to judge whether or not the summary is consistent with the original story. In this case, you want to make sure the events and details described in the summary are mentioned in the actual story. For example, *Summary B* is **not** consistent with the story as the minister was sitting in the puddle of water and not lying in it. Note that *Summary A* is consistent with the story. The last bold sentence in *Summary A* contains some commentary on the story, and we ask you to ignore commentary in evaluating consistency. *Summary C* and *Summary D* are also consistent with the story. The AI-generated inconsistency 
-
-If you need to see the AI-generated inconsistency to help you answer the above question, you can click and expand the section. This would be provided for every story and summary and would contain at least one potentially inconsistent detail identified between the summary and the story.
+The first question asks you to judge whether or not the summary is consistent with the original story. In this case, you want to make sure the events and details described in the summary are mentioned in the actual story. For example, *Summary B* is **not** consistent with the story as the minister was sitting in the puddle of water and not lying in it. Note that *Summary A* is consistent with the story. The last bold sentence in *Summary A* contains some commentary on the story, and we ask you to ignore commentary in evaluating consistency. *Summary C* and *Summary D* are also consistent with the story.
 
 ---
 
@@ -58,11 +53,13 @@ If you need to see the AI-generated inconsistency to help you answer the above q
 
 ---
 
-**Question 1 (repeated): Is the information in the summary consistent with the story?**\
-The first question is repeated here. It still asks you to judge whether or not the summary is consistent with the original story. You can use the information in the *possible AI-generated inconsistency identified in the summary* to help answer this question. **Please note that this AI-generated inconsistency could be inaccurate or unhelpful, so please use your judgment to best answer the question.** For example, *Summary B* is **not** consistent with the story and the AI-generated inconsistency for Summary B states the correct inconsistency. Note that *Summary A* is consistent with the story. This may help you identify the fact that this summary is inconsistent, which could have been missed when answering this question in the first try. Please **resubmit** your answer instead of changing your earlier response. *Summary C* and *Summary D* are also consistent with the story. The AI-generated inconsistency for Summary D states an incorrect inconsistency, which is a misinterpretation of the facts in the story.
-
 **Question 2: Is the possible AI-generated inconsistency identified in the summary correct?**\
-The additional information in the *possible AI-generated inconsistency identified in the summary* can contain a correct analysis of the summary with respect to the story, or contain an incorrect, or invented inconsistency. This question asks you to judge whether this AI-generated inconsistency is correct. For example, *Summary B* is **not** consistent with the story and the inconsistency outlined in the additional section is correct. In such cases, this question can be marked **Yes**. However, for *Summary D*, the summary is consistent. In such cases, this question can be marked **N/A**, or **No**, since the inconsistency outlined in incorrect. Please use your judgement for the answer to this question for consistent summaries.
+The information in the *possible AI-generated inconsistency identified in the summary* can contain a correct analysis of the summary with respect to the story, or contain an incorrect, or invented inconsistency. This question asks you to judge whether this AI-generated inconsistency is correct. For example, *Summary B* is **not** consistent with the story and the inconsistency outlined in the additional section is correct. In such cases, this question can be marked **Yes**. However, for *Summary D*, the summary is consistent. In such cases, this question can be marked **N/A**, or **No**, since the inconsistency outlined in incorrect. Please use your judgement for the answer to this question for consistent summaries.
+
+**Question 3 (repeated): Is the information in the summary consistent with the story?**\
+If the AI-generated inconsistency changes your answer to the first question (for example, identifying some inconsistency that you may have missed), account for the change here. Do not change your first answer.
+
+The first question is repeated here. It still asks you to judge whether or not the summary is consistent with the original story. If the information in the *possible AI-generated inconsistency identified in the summary* changes your answer to this question, please change your answer here instead of changing your earlier response. **Please note that this AI-generated inconsistency could be inaccurate or unhelpful, so please use your judgment to best answer the question.** For example, *Summary B* is **not** consistent with the story and the AI-generated inconsistency for Summary B states the correct inconsistency. This may help you identify the fact that this summary is inconsistent, which could have been missed when answering this question in the first try. *Summary C* and *Summary D* are also consistent with the story. The AI-generated inconsistency for Summary D states an incorrect inconsistency, which is a misinterpretation of the facts in the story. This would not change your answer, so selecting the same option works for this.
 
 #### Payment
 For the initial pilot study, you will be paid $35 to evaluate 33 summaries. You will be paid via Upwork once you have completed the pilot. Please allow a few days to submit the payment. 
