@@ -45,38 +45,40 @@ if not to_download:
     output_name = os.path.join(outfolder, f"{summary_id}.jsonl")
     selected = dict()
 
-    st.markdown(f"### Summary Evaluation")
+    with st.expander("Question 1"):
+        st.markdown(f"### Summary Evaluation")
 
-    binary_choice_list = ["Yes", "No"]
-    selected["consistent"] = st.radio(
-        " Is the information in the summary consistent with the story? "
-        + "A consistent summary should only include information that can be inferred from the original story. ",
-        options=binary_choice_list,
-        index=0,
-    )
+        binary_choice_list = ["Yes", "No"]
+        selected["consistent"] = st.radio(
+            " Is the information in the summary consistent with the story? "
+            + "A consistent summary should only include information that can be inferred from the original story. ",
+            options=binary_choice_list,
+            index=0,
+        )
+    
+    with st.expander("Question 2"):
+        st.markdown("#### Possible AI-generated inconsistency identified in summary")
+        for line in inconsistency_proof:
+            st.markdown(line)
 
-    st.markdown("---")
-    st.markdown("#### Possible AI-generated inconsistency identified in summary")
-    for line in inconsistency_proof:
-        st.markdown(line)
-
-    binary_choice_list = ["Yes", "No", "N/A"]
-    selected["proof_correct"] = st.radio(
-        " Is the possible AI-generated inconsistency identified in the summary correct? "
-        + "This question can be marked as N/A if the summary is consistent.",
-        options=binary_choice_list,
-        index=0,
-    )
-    st.markdown("---")
-    st.markdown(f"### Summary Re-evaluation")
-    st.markdown("If the AI-generated inconsistency changes your answer to the first question, account for the change here. Do not change your first answer.")
-    binary_choice_list = ["Yes", "No"]
-    selected["consistent_resubmit"] = st.radio(
-        " Is the information in the summary consistent with the story? "
-        + "A consistent summary should only include information that can be inferred from the original story.",
-        options=binary_choice_list,
-        index=0,
-    )
+        binary_choice_list = ["Yes", "No", "N/A"]
+        selected["proof_correct"] = st.radio(
+            " Is the possible AI-generated inconsistency identified in the summary correct? "
+            + "This question can be marked as N/A if the summary is consistent.",
+            options=binary_choice_list,
+            index=0,
+        )
+        
+    with st.expander("Question 3"):
+        st.markdown(f"### Summary Re-evaluation")
+        st.markdown("If the AI-generated inconsistency changes your answer to the first question, account for the change here. Do not change your first answer.")
+        binary_choice_list = ["Yes", "No"]
+        selected["consistent_resubmit"] = st.radio(
+            " Is the information in the summary consistent with the story? "
+            + "A consistent summary should only include information that can be inferred from the original story.",
+            options=binary_choice_list,
+            index=0,
+        )
     # create a dictionary to store the annotation
     annotation = {
         "id": summary_id,
