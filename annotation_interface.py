@@ -1,6 +1,7 @@
 import os
 
 import streamlit as st
+import streamlit_nested_layout
 import glob
 import json
 
@@ -45,18 +46,17 @@ if not to_download:
     output_name = os.path.join(outfolder, f"{summary_id}.jsonl")
     selected = dict()
 
-    with st.expander("Question 1"):
-        st.markdown(f"### Summary Evaluation")
+    st.markdown(f"### Summary Evaluation")
 
-        binary_choice_list = ["Yes", "No"]
-        selected["consistent"] = st.radio(
-            " Is the information in the summary consistent with the story? "
-            + "A consistent summary should only include information that can be inferred from the original story. ",
-            options=binary_choice_list,
-            index=0,
-        )
+    binary_choice_list = ["Yes", "No"]
+    selected["consistent"] = st.radio(
+        " Is the information in the summary consistent with the story? "
+        + "A consistent summary should only include information that can be inferred from the original story. ",
+        options=binary_choice_list,
+        index=0,
+    )
     
-    with st.expander("Question 2"):
+    with st.expander("See possible AI-generated inconsistency identified in summary"):
         st.markdown("#### Possible AI-generated inconsistency identified in summary")
         for line in inconsistency_proof:
             st.markdown(line)
@@ -69,32 +69,31 @@ if not to_download:
             index=0,
         )
         
-    with st.expander("Question 3"):
-        st.markdown(f"### Summary Re-evaluation")
-        st.markdown("If the AI-generated inconsistency changes your answer to the first question, account for the change here. Do not change your first answer.")
-        binary_choice_list = ["Yes", "No"]
-        selected["consistent_resubmit"] = st.radio(
-            " Is the information in the summary consistent with the story? "
-            + "A consistent summary should only include information that can be inferred from the original story.",
-            options=binary_choice_list,
-            index=0,
-        )
-    # create a dictionary to store the annotation
-    annotation = {
-        "id": summary_id,
-        "username": username,
-        "story": article_text,
-        "summary": summary_text,
-        "annotation": selected,
-    }
-    # create a submit button and refresh the page when the button is clicked
-    if st.button("Submit"):
-        # write the annotation to a json file
-        os.makedirs("data/annotations", exist_ok=True)
-        with open(output_name, "w") as f:
-            f.write(json.dumps(annotation) + "\n")
-        # display a success message
-        st.success("Annotation submitted successfully!")
+        with st.expander("Summary Re-evaluation"):
+            st.markdown("If the AI-generated inconsistency changes your answer to the first question, account for the change here. Do not change your first answer.")
+            binary_choice_list = ["Yes", "No"]
+            selected["consistent_resubmit"] = st.radio(
+                " Is the information in the summary consistent with the story? "
+                + "A consistent summary should only include information that can be inferred from the original story.",
+                options=binary_choice_list,
+                index=0,
+            )
+            # create a dictionary to store the annotation
+            annotation = {
+                "id": summary_id,
+                "username": username,
+                "story": article_text,
+                "summary": summary_text,
+                "annotation": selected,
+            }
+            # create a submit button and refresh the page when the button is clicked
+            if st.button("Submit"):
+                # write the annotation to a json file
+                os.makedirs("data/annotations", exist_ok=True)
+                with open(output_name, "w") as f:
+                    f.write(json.dumps(annotation) + "\n")
+                # display a success message
+                st.success("Annotation submitted successfully!")
 
 else:
     # We can download all files.
