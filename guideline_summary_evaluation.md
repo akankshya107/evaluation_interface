@@ -58,7 +58,7 @@ Below are two example summaries for this story:\
 
 >Whereas, the *Summary B* arguments are plausible. Even if you agree with the "reason for consistency" in the summary B argument, you would still mark this as plausible as both explanations make sense and the inconsistency identified is a difference between the summary and the story.
 
-**Question 3 (repeated): Is the information in the summary consistent with the story?**\
+**Question 3 (repeated): Is the information in the summary consistent with the story?**
 >If the AI-generated inconsistency changes your answer to the first question (for example, identifying some inconsistency that you may have missed), account for the change here. Do not change your first answer.
 
 #### Payment
