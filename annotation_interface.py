@@ -51,30 +51,31 @@ if not to_download:
     binary_choice_list = ["Yes", "No"]
     selected["consistent"] = st.radio(
         " Is the information in the summary consistent with the story? "
-        + "A consistent summary should only include information that can be inferred from the original story. ",
+        + "The events and details described in a consistent summary should not misrepresent details of the story or make things up. "
+        + "Answer this question before opening the tabs below.",
         options=binary_choice_list,
         index=0,
     )
     
-    with st.expander("See possible AI-generated inconsistency identified in summary"):
-        st.markdown("#### Possible AI-generated inconsistency identified in summary")
+    with st.expander("See possible AI-detected inconsistency in summary"):
+        st.markdown("#### Possible AI-detected inconsistency in summary")
         for line in inconsistency_proof:
-            st.markdown(line)
+            st.markdown(">"+line)
 
-        binary_choice_list = ["Yes", "No", "N/A"]
+        binary_choice_list = ["Yes", "No"]
         selected["proof_correct"] = st.radio(
-            " Is the possible AI-generated inconsistency identified in the summary correct? "
-            + "This question can be marked as N/A if the summary is consistent.",
+            " Are the AI-generated possible inconsistency and its arguments for and against plausible? "
+            + "The inconsistency and its arguments can be plausible even if you think the summary is consistent overall with the story (see instruction example).",
             options=binary_choice_list,
             index=0,
         )
         
         with st.expander("Summary Re-evaluation"):
-            st.markdown("If the AI-generated inconsistency changes your answer to the first question, account for the change here. Do not change your first answer.")
+            st.markdown("If the AI-generated inconsistency changes your answer to the first question, account for the change here. Do not change your first answer - just enter the same or a different answer here.")
             binary_choice_list = ["Yes", "No"]
             selected["consistent_resubmit"] = st.radio(
                 " Is the information in the summary consistent with the story? "
-                + "A consistent summary should only include information that can be inferred from the original story.",
+                + "The events and details described in a consistent summary should not misrepresent details of the story or make things up.",
                 options=binary_choice_list,
                 index=0,
             )
