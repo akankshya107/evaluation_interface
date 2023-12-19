@@ -27,7 +27,9 @@ Below are two example summaries for this story:\
 ---
 
 **Question 1: Is the information in the summary consistent with the story?**\
-The first question asks you to judge whether or not the summary is consistent with the original story. The events and details described in the summary should not misrepresent details of the story or make things up. For example, *Summary B* is **not** consistent with the story as the minister was sitting in the puddle of water instead of lying in it. *Summary A* is consistent with the story. The last bold sentence in *Summary A* contains some commentary on the story, and we ask you to ignore commentary in evaluating consistency.
+>The first question asks you to judge whether or not the summary is consistent with the original story. The events and details described in the summary should not misrepresent details of the story or make things up.
+>For example, *Summary B* is **not** consistent with the story as the minister was sitting in the puddle of water instead of lying in it.
+>*Summary A* is consistent with the story. The last bold sentence in *Summary A* contains some commentary on the story, and we ask you to ignore commentary in evaluating consistency.
 
 ---
 
@@ -48,7 +50,9 @@ The first question asks you to judge whether or not the summary is consistent wi
 ---
 
 **Question 2: Are the AI-generated possible inconsistency and its arguments for and against plausible?**\
-The information in the *possible AI-generated inconsistency identified in the summary* can contain a correct analysis of the summary with respect to the story, or contain an incorrect, or invented inconsistency. This question asks you to judge whether this AI-generated inconsistency and its arguments are *plausible*, not which argument you agree with. For example, the *Summary A* arguments are not plausible becauuse the summary does not specify that the pools are from rainwater. Whereas, the *Summary B* arguments are plausible. Even if you agree with the "reason for consistency" in the summary B argument, you would still mark this as plausible as both explanations make sense and the inconsistency identified is a difference between the summary and the story.
+>The information in the *possible AI-generated inconsistency identified in the summary* can contain a correct analysis of the summary with respect to the story, or contain an incorrect, or invented inconsistency. This question asks you to judge whether this AI-generated inconsistency and its arguments are *plausible*, not which argument you agree with.
+>For example, the *Summary A* arguments are not plausible becauuse the summary does not specify that the pools are from rainwater.
+>Whereas, the *Summary B* arguments are plausible. Even if you agree with the "reason for consistency" in the summary B argument, you would still mark this as plausible as both explanations make sense and the inconsistency identified is a difference between the summary and the story.
 
 **Question 3 (repeated): Is the information in the summary consistent with the story?**\
 If the AI-generated inconsistency changes your answer to the first question (for example, identifying some inconsistency that you may have missed), account for the change here. Do not change your first answer.
