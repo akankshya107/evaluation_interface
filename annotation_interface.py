@@ -64,7 +64,7 @@ if not to_download:
 
         binary_choice_list = ["Yes", "No"]
         selected["proof_correct"] = st.radio(
-            " Are the AI-generated possible inconsistency and its arguments for and against plausible? "
+            " Are the inconsistency and its arguments plausible? "
             + "The inconsistency and its arguments can be plausible even if you think the summary is consistent overall with the story (see instruction example).",
             options=binary_choice_list,
             index=0,
