@@ -26,12 +26,12 @@ Below are two example summaries for this story:\
 
 ---
 
-**Question 1: Is the information in the summary consistent with the story?**\
+**Question 1: Is the information in the summary consistent with the story?**
 >The first question asks you to judge whether or not the summary is consistent with the original story. The events and details described in the summary should not misrepresent details of the story or make things up.
 
->For example, *Summary B* is **not** consistent with the story as the minister was sitting in the puddle of water instead of lying in it.
+>For example, *Summary A* is consistent with the story. The last bold sentence in *Summary A* contains some commentary on the story, and we ask you to ignore commentary in evaluating consistency.
 
->*Summary A* is consistent with the story. The last bold sentence in *Summary A* contains some commentary on the story, and we ask you to ignore commentary in evaluating consistency.
+>*Summary B* is **not** consistent with the story as the minister was sitting in the puddle of water instead of lying in it.
 
 ---
 
