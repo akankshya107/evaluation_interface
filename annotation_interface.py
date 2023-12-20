@@ -1,6 +1,7 @@
 import os
 
 import streamlit as st
+import streamlit_nested_layout
 import glob
 import json
 
@@ -38,10 +39,8 @@ if not to_download:
     st.markdown(article_text)
     st.markdown("### Summary")
     st.markdown(summary_text)
-    st.markdown('### Possible AI-generated inconsistency identified in summary')
-    for line in inconsistency_proof:
-        st.markdown(line)
 
+    # Load previous evaluation
     outfolder = f"data/annotations/{username}"
     os.makedirs(outfolder, exist_ok=True)
     output_name = os.path.join(outfolder, f"{summary_id}.jsonl")
@@ -52,55 +51,61 @@ if not to_download:
     binary_choice_list = ["Yes", "No"]
     selected["consistent"] = st.radio(
         " Is the information in the summary consistent with the story? "
-        + "A consistent summary should only include information that can be inferred from the original story. "
-        + "Ignore any commentary for this question. Use the inconsistency identified in the summary as an aid to this question.",
+        + "The events and details described in a consistent summary should not misrepresent details of the story or make things up. "
+        + "Answer this question before opening the tabs below.",
         options=binary_choice_list,
         index=0,
     )
+    
+    with st.expander("See possible AI-detected inconsistency in summary"):
+        st.markdown("#### Possible AI-detected inconsistency in summary")
+        for line in inconsistency_proof:
+            st.markdown(">"+line)
 
-    binary_choice_list = ["Yes", "No", "NA"]
-    selected["proof_correct"] = st.radio(
-        " Is the possible AI-generated inconsistency identified in the summary correct? "
-        + "This question can be marked as N/A if the summary is consistent.",
-        options=binary_choice_list,
-        index=0,
-    )
-
-    binary_choice_list = ["Yes", "No", "NA"]
-    selected["proof_used"] = st.radio(
-        " Did the possible AI-generated inconsistency identified in the summary aid in the answer to the first question? "
-        + "This question can be marked as N/A if the summary is consistent.",
-        options=binary_choice_list,
-        index=0,
-    )
-
-    # create a dictionary to store the annotation
-    annotation = {
-        "id": summary_id,
-        "username": username,
-        "story": article_text,
-        "summary": summary_text,
-        "annotation": selected,
-    }
-
-    # create a submit button and refresh the page when the button is clicked
-    if st.button("Submit"):
-        # write the annotation to a json file
-        os.makedirs("data/annotations", exist_ok=True)
-        with open(output_name, "w") as f:
-            f.write(json.dumps(annotation))
-        # display a success message
-        st.success("Annotation submitted successfully!")
+        binary_choice_list = ["Yes", "No"]
+        selected["proof_correct"] = st.radio(
+            " Are the inconsistency and its arguments plausible? "
+            + "The inconsistency and its arguments can be plausible even if you think the summary is consistent overall with the story (see instruction example).",
+            options=binary_choice_list,
+            index=0,
+        )
+        
+        with st.expander("Summary Re-evaluation"):
+            st.markdown("If the AI-generated inconsistency changes your answer to the first question, account for the change here. Do not change your first answer - just enter the same or a different answer here.")
+            binary_choice_list = ["Yes", "No"]
+            selected["consistent_resubmit"] = st.radio(
+                " Is the information in the summary consistent with the story? "
+                + "The events and details described in a consistent summary should not misrepresent details of the story or make things up.",
+                options=binary_choice_list,
+                index=0,
+            )
+            # create a dictionary to store the annotation
+            annotation = {
+                "id": summary_id,
+                "username": username,
+                "story": article_text,
+                "summary": summary_text,
+                "annotation": selected,
+            }
+            # create a submit button and refresh the page when the button is clicked
+            if st.button("Submit"):
+                # write the annotation to a json file
+                os.makedirs("data/annotations", exist_ok=True)
+                with open(output_name, "w") as f:
+                    f.write(json.dumps(annotation) + "\n")
+                # display a success message
+                st.success("Annotation submitted successfully!")
 
 else:
     # We can download all files.
+    st.write("Only the latest annotations are available.")
     annotations = []
     files = glob.glob(pathname="data/annotations/*/*")
     for output_name in files:
         with open(output_name, "r") as file:
             st.write(output_name)
             try:
-                annotations.append(json.loads(file.readline()))
+                annotations.append(json.loads(file.readlines()[-1]))
             except:
                 st.write("Failed")
                 continue

@@ -1,5 +1,5 @@
 #### Task Description
-In this task, you will be presented with a short story, along with a summary of the story. Please read both the story and the summary carefully. We will also include an AI-generated inconsistency of the summary with respect to the story, which may or may not be correct. We will then ask you to answer several questions that attempt to assess the quality of the summary. The AI-generated inconsistency we include can be used to help you answer.
+In this task, you will be presented with a short story, along with a summary of the story. Please read both the story and the summary carefully. We will first ask you to assess whether the summary is consistent with the story. Once you have made this judgment, we will show you an AI-detected inconsistency between the story and the summary, which **may or may not be correct**. The AI system will also provide an argument for and against the inconsistency. You will be asked to judge whether the AI-generated inconsistency and explanations are plausible. Finally, you will have a chance to change your answer to the fist question if one of the AI-arguments has persuaded you differently. Make sure to complete all three questions in order and hit "Submit" to record your answers.
 
 **Warning:** Some of the stories may contain content that readers could find offensive, disturbing, or otherwise unsettling. If you do not feel comfortable with this, please feel free to decline the task.
 
@@ -15,47 +15,51 @@ Please read the story carefully and try to understand the points that are centra
 
 &nbsp;
 
-Below are four example summaries for this story:\
+Below are two example summaries for this story:\
 **Summary A**
 >The short story describes the execution of six cabinet ministers by firing squad early in the morning during heavy rain. One of the ministers is sick with typhoid fever and too weak to stand, so he is brought downstairs and shot while sitting in a puddle of water with his head on his knees. **The story paints a vivid image of human suffering.**
 
 **Summary B**
 >Six cabinet ministers are executed by firing squad early in the morning during heavy rain. One of the ministers is sick with typhoid fever and too weak to stand, so he is shot while **lying in a puddle of water** near the hospital wall.
 
-**Summary C**
->Six cabinet ministers are executed by firing squad at half-past six outside a hospital. It's been raining hard and there are pools of water in the courtyard.
-
-**Summary D**
->The rain has been pouring heavily, which has led to the hospital shutters being nailed shut. The rainwater has been collecting into pools in the hospital courtyard. 
-
 &nbsp;
 
-Below is an example AI-generated inconsistency for summary B and summary D of the story. This would be provided for every story and summary and would contain at least one potentially inconsistent detail identified between the summary and the story.
+---
 
-**Possible AI-generated inconsistency identified in summary B**
->Inconsistency: One of the ministers ... is shot while **lying in a puddle of water** near the hospital wall.
+**Question 1: Is the information in the summary consistent with the story?**
+>The first question asks you to judge whether or not the summary is consistent with the original story. The events and details described in the summary should not misrepresent details of the story or make things up.
 
->Reason for inconsistency: The story states that the minister who was too weak to stand was sitting down in the puddle of water with his head on his knees versus lying in it. Thus, the summary is inconsistent in this detail with respect to the story.
+>For example, *Summary A* is consistent with the story. The last bold sentence in *Summary A* contains some commentary on the story, and we ask you to ignore commentary in evaluating consistency.
 
->Reason for consistency: The summary talks about the minister lying in a puddle of water. The story also mentions a sick minister who is in a puddle of water when the first shots are fired.
+>*Summary B* is **not** consistent with the story as the minister was sitting in the puddle of water instead of lying in it.
 
-**Possible AI-generated inconsistency identified in summary D**
+---
+
+**Possible AI-generated inconsistency identified in summary A**
 >Inconsistency: The rainwater has been collecting into pools in the hospital courtyard. 
 
 >Reason for inconsistency: The story describes pools of water in the courtyard. However, it does not specify that these pools of water are from rainwater. Thus, the summary is inconsistent in this detail with respect to the story.
 
 >Reason for consistency: The story mentions the pools of water in the courtyard. It also details that it is raining hard, which is clearly the source of the pools of water.
 
+**Possible AI-generated inconsistency identified in summary B**
+>Inconsistency: One of the ministers is shot while **lying in a puddle of water** near the hospital wall.
+
+>Reason for inconsistency: The story states that the minister who was too weak to stand was sitting down in the puddle of water with his head on his knees versus lying in it. Thus, the summary is inconsistent in this detail with respect to the story.
+
+>Reason for consistency: Whether the minister was lying down or sitting, the meaning is not significantly different.
+
 ---
 
-**Question 1: Is the information in the summary consistent with the story?**\
-The first question asks you to judge whether or not the summary is consistent with the original story. In this case, you want to make sure the events and details described in the summary are mentioned in the actual story. Use the information in the *possible AI-generated inconsistency identified in the summary* as an aid to this question. **Please note that this AI-generated inconsistency could be inaccurate or unhelpful, so please use your judgment to best answer the question.** For example, *Summary B* is **not** consistent with the story as the minister was sitting in the puddle of water and not lying in it. The AI-generated inconsistency for Summary B states the correct inconsistency. Note that *Summary A* is consistent with the story. The last bold sentence in *Summary A* contains some commentary on the story, and we ask you to ignore commentary in evaluating consistency. *Summary C* and *Summary D* are also consistent with the story. The AI-generated inconsistency for Summary D states an incorrect inconsistency, which is a misinterpretation of the facts in the story.
+**Question 2: Are the AI-generated possible inconsistency and its arguments for and against plausible?**
+>The information in the *possible AI-generated inconsistency identified in the summary* can contain a correct analysis of the summary with respect to the story, or contain an incorrect, or invented inconsistency. This question asks you to judge whether this AI-generated inconsistency and its arguments are *plausible*, not which argument you agree with.
 
-**Question 2: Is the possible AI-generated inconsistency identified in the summary correct?**\
-The additional information in the *possible AI-generated inconsistency identified in the summary* can contain a correct analysis of the summary with respect to the story, or contain an incorrect, or invented inconsistency. This question asks you to judge whether this AI-generated inconsistency is correct. For example, *Summary B* is **not** consistent with the story and the inconsistency outlined in the additional section is correct. In such cases, this question can be marked **Yes**. However, for *Summary D*, the summary is consistent. In such cases, this question can be marked **N/A**, or **No**, since the inconsistency outlined in incorrect. Please use your judgement for the answer to this question for consistent summaries.
+>For example, the *Summary A* arguments are not plausible becauuse the summary does not specify that the pools are from rainwater.
 
-**Question 3: Did the possible AI-generated inconsistency identified in the summary aid in the answer to the first question?**\
-This question is only valid for inconsistent summaries like *Summary B*. The additional information in the *possible AI-generated inconsistency identified in the summary* may help you answer the first question. Please select **Yes** in the cases that it is helpful. For the analysis for *Summary D*, this question can be marked as **N/A**.
+>Whereas, the *Summary B* arguments are plausible. Even if you agree with the "reason for consistency" in the summary B argument, you would still mark this as plausible as both explanations make sense and the inconsistency identified is a difference between the summary and the story.
+
+**Question 3 (repeated): Is the information in the summary consistent with the story?**
+>If the AI-generated inconsistency changes your answer to the first question (for example, identifying some inconsistency that you may have missed), account for the change here. Do not change your first answer.
 
 #### Payment
 For the initial pilot study, you will be paid $35 to evaluate 33 summaries. You will be paid via Upwork once you have completed the pilot. Please allow a few days to submit the payment. 
