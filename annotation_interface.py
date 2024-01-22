@@ -40,7 +40,6 @@ if not to_download:
     st.markdown("### Summary")
     st.markdown(summary_text)
 
-    # Load previous evaluation
     outfolder = f"data/annotations/{username}"
     os.makedirs(outfolder, exist_ok=True)
     output_name = os.path.join(outfolder, f"{summary_id}.jsonl")
@@ -51,50 +50,32 @@ if not to_download:
     binary_choice_list = ["Yes", "No"]
     selected["consistent"] = st.radio(
         " Is the information in the summary consistent with the story? "
-        + "The events and details described in a consistent summary should not misrepresent details of the story or make things up. "
-        + "Answer this question before opening the tabs below.",
+        + "The events and details described in a consistent summary should not misrepresent details of the story or make things up.",
         options=binary_choice_list,
-        index=0,
+        index=None,
     )
-    
-    with st.expander("See possible AI-detected inconsistency in summary"):
-        st.markdown("#### Possible AI-detected inconsistency in summary")
-        for line in inconsistency_proof:
-            st.markdown(">"+line)
 
-        binary_choice_list = ["Yes", "No"]
-        selected["proof_correct"] = st.radio(
-            " Are the inconsistency and its arguments plausible? "
-            + "The inconsistency and its arguments can be plausible even if you think the summary is consistent overall with the story (see instruction example).",
-            options=binary_choice_list,
-            index=0,
-        )
-        
-        with st.expander("Summary Re-evaluation"):
-            st.markdown("If the AI-generated inconsistency changes your answer to the first question, account for the change here. Do not change your first answer - just enter the same or a different answer here.")
-            binary_choice_list = ["Yes", "No"]
-            selected["consistent_resubmit"] = st.radio(
-                " Is the information in the summary consistent with the story? "
-                + "The events and details described in a consistent summary should not misrepresent details of the story or make things up.",
-                options=binary_choice_list,
-                index=0,
-            )
-            # create a dictionary to store the annotation
-            annotation = {
-                "id": summary_id,
-                "username": username,
-                "story": article_text,
-                "summary": summary_text,
-                "annotation": selected,
-            }
-            # create a submit button and refresh the page when the button is clicked
-            if st.button("Submit"):
-                # write the annotation to a json file
-                os.makedirs("data/annotations", exist_ok=True)
-                with open(output_name, "w") as f:
-                    f.write(json.dumps(annotation) + "\n")
-                # display a success message
-                st.success("Annotation submitted successfully!")
+    if selected["consistent"] == "Yes":
+        selected["justification"] = st.text_area("List the key details of the summary that verify that the summary is consistent with the story.")
+    elif selected["consistent"] == "No":
+        selected["justification"] = st.text_area("List the top inconsistent details that shows that the summary is inconsistent with the story.")
+
+    # create a dictionary to store the annotation
+    annotation = {
+        "id": summary_id,
+        "username": username,
+        "story": article_text,
+        "summary": summary_text,
+        "annotation": selected,
+    }
+    # create a submit button and refresh the page when the button is clicked
+    if "justification" in selected and st.button("Submit"):
+        # write the annotation to a json file
+        os.makedirs("data/annotations", exist_ok=True)
+        with open(output_name, "w") as f:
+            f.write(json.dumps(annotation) + "\n")
+        # display a success message
+        st.success("Annotation submitted successfully!")
 
 else:
     # We can download all files.

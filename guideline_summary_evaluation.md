@@ -1,5 +1,5 @@
 #### Task Description
-In this task, you will be presented with a short story, along with a summary of the story. Please read both the story and the summary carefully. We will first ask you to assess whether the summary is consistent with the story. Once you have made this judgment, we will show you an AI-detected inconsistency between the story and the summary, which **may or may not be correct**. The AI system will also provide an argument for and against the inconsistency. You will be asked to judge whether the AI-generated inconsistency and explanations are plausible. Finally, you will have a chance to change your answer to the fist question if one of the AI-arguments has persuaded you differently. Make sure to complete all three questions in order and hit "Submit" to record your answers.
+In this task, you will be presented with a short story, along with a summary of the story. Please read both the story and the summary carefully. We will first ask you to assess whether the summary is consistent with the story. There will be a followup question where we will ask you to provide some details and elaborate on why you selected a particular answer. Make sure to submit to record your answers.
 
 **Warning:** Some of the stories may contain content that readers could find offensive, disturbing, or otherwise unsettling. If you do not feel comfortable with this, please feel free to decline the task.
 
@@ -29,37 +29,24 @@ Below are two example summaries for this story:\
 **Question 1: Is the information in the summary consistent with the story?**
 >The first question asks you to judge whether or not the summary is consistent with the original story. The events and details described in the summary should not misrepresent details of the story or make things up.
 
->For example, *Summary A* is consistent with the story. The last bold sentence in *Summary A* contains some commentary on the story, and we ask you to ignore commentary in evaluating consistency.
+>For example, *Summary A* is consistent with the story. The last bold sentence in *Summary A* contains some commentary on the story, and we ask you to ignore commentary in evaluating consistency. The response would ideally be "Yes" for *Summary A*.
 
->*Summary B* is **not** consistent with the story as the minister was sitting in the puddle of water instead of lying in it.
+>*Summary B* is **not** consistent with the story as the minister was sitting in the puddle of water instead of lying in it.  The response would ideally be "No" for *Summary B*.
 
----
+**The followup question will be different according to your response to Question 1.**
 
-**Possible AI-generated inconsistency identified in summary A**
->Inconsistency: The rainwater has been collecting into pools in the hospital courtyard. 
+**Question 2 (for Summary A): List the key details of the summary that verify that the summary is consistent with the story.**
 
->Reason for inconsistency: The story describes pools of water in the courtyard. However, it does not specify that these pools of water are from rainwater. Thus, the summary is inconsistent in this detail with respect to the story.
+>Include the consistent details between the summary and the story which prompted you to select "Yes" for Question 1. For this summary, a possible response is:
 
->Reason for consistency: The story mentions the pools of water in the courtyard. It also details that it is raining hard, which is clearly the source of the pools of water.
+>The summary includes the key details of the execution of six cabinet ministers, the early morning (6:30 AM), and the heavy rain. The story mentions these details in the first few sentences. 
+>Further, the summary includes the key details of the minister sick with typhoid and how he was sitting on his knees when shot. All the details described in the summary are mentioned in the actual story.
 
-**Possible AI-generated inconsistency identified in summary B**
->Inconsistency: One of the ministers is shot while **lying in a puddle of water** near the hospital wall.
+**Question 2 (for Summary B): List the top inconsistent details that shows that the summary is inconsistent with the story.**
 
->Reason for inconsistency: The story states that the minister who was too weak to stand was sitting down in the puddle of water with his head on his knees versus lying in it. Thus, the summary is inconsistent in this detail with respect to the story.
+>Include the inconsistent details which prompted you to select "No" for Question 1. These would be details in the summary that are not mentioned in the actual story, or are a contradiction to what occurred, or a misinterpretation of the events of the story. For this summary, a possible response is:
 
->Reason for consistency: Whether the minister was lying down or sitting, the meaning is not significantly different.
-
----
-
-**Question 2: Are the AI-generated possible inconsistency and its arguments for and against plausible?**
->The information in the *possible AI-generated inconsistency identified in the summary* can contain a correct analysis of the summary with respect to the story, or contain an incorrect, or invented inconsistency. This question asks you to judge whether this AI-generated inconsistency and its arguments are *plausible*, not which argument you agree with.
-
->For example, the *Summary A* arguments are not plausible becauuse the summary does not specify that the pools are from rainwater.
-
->Whereas, the *Summary B* arguments are plausible. Even if you agree with the "reason for consistency" in the summary B argument, you would still mark this as plausible as both explanations make sense and the inconsistency identified is a difference between the summary and the story.
-
-**Question 3 (repeated): Is the information in the summary consistent with the story?**
->If the AI-generated inconsistency changes your answer to the first question (for example, identifying some inconsistency that you may have missed), account for the change here. Do not change your first answer.
+>The story states that the minister who was too weak to stand was sitting down in the puddle of water with his head on his knees versus lying in a puddle of water. This is an inconsistent detail in the summary with respect to the story.
 
 #### Payment
 For the initial pilot study, you will be paid $35 to evaluate 33 summaries. You will be paid via Upwork once you have completed the pilot. Please allow a few days to submit the payment. 
