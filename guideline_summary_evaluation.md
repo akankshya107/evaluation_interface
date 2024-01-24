@@ -1,5 +1,5 @@
 #### Task Description
-In this task, you will be presented with a short story, along with a summary of the story. Please read both the story and the summary carefully. You will be asked to explain the key details in the summary in your own words. After you submit your respoonse, you will be asked to assess whether the summary is consistent with the story. Make sure to submit to record your answers.
+In this task, you will be presented with a short story, along with a summary of the story. Please read both the story and the summary carefully. You will be asked to explain the key details in the summary in your own words. After you submit your response, you will be asked to assess whether the summary is consistent with the story. Make sure to submit to record your answers.
 
 **Warning:** Some of the stories may contain content that readers could find offensive, disturbing, or otherwise unsettling. If you do not feel comfortable with this, please feel free to decline the task.
 
