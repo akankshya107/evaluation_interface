@@ -1,5 +1,5 @@
 #### Task Description
-In this task, you will be presented with a short story, along with a summary of the story. Please read both the story and the summary carefully. We will first ask you to assess whether the summary is consistent with the story. There will be a followup question where we will ask you to provide some details and elaborate on why you selected a particular answer. Make sure to submit to record your answers.
+In this task, you will be presented with a short story, along with a summary of the story. Please read both the story and the summary carefully. You will be asked to explain the key details in the summary in your own words. After you submit your respoonse, you will be asked to assess whether the summary is consistent with the story. Make sure to submit to record your answers.
 
 **Warning:** Some of the stories may contain content that readers could find offensive, disturbing, or otherwise unsettling. If you do not feel comfortable with this, please feel free to decline the task.
 
@@ -26,27 +26,26 @@ Below are two example summaries for this story:\
 
 ---
 
-**Question 1: Is the information in the summary consistent with the story?**
->The first question asks you to judge whether or not the summary is consistent with the original story. The events and details described in the summary should not misrepresent details of the story or make things up.
+**Question 1: List the key details of the summary.**
 
->For example, *Summary A* is consistent with the story. The last bold sentence in *Summary A* contains some commentary on the story, and we ask you to ignore commentary in evaluating consistency. The response would ideally be "Yes" for *Summary A*.
+>Write the key details of the summary *in your own words*. For summary A, a possible response is:
 
->*Summary B* is **not** consistent with the story as the minister was sitting in the puddle of water instead of lying in it.  The response would ideally be "No" for *Summary B*.
+>The summary includes the key details of the execution of six cabinet ministers in the early morning and the heavy rain.
+>Further, the summary includes the key details of the minister sick with typhoid and how he was sitting on his knees when shot.
+>Lastly, the summary talks about the image of human suffering painted by the story.
 
-**The followup question will be different according to your response to Question 1.**
+>For summary B, a possible response is:
 
-**Question 2 (for Summary A): List the key details of the summary that verify that the summary is consistent with the story.**
+>The summary includes the key details of the execution of six cabinet ministers in the early morning during heavy rain.
+>Further, the summary includes the key details of the minister sick with typhoid and how he was too weak to stand.
+>Lastly, the summary talks about the minister lying in a puddle of water when shot.
 
->Include the consistent details between the summary and the story which prompted you to select "Yes" for Question 1. For this summary, a possible response is:
+**Question 2: Is the information in the summary consistent with the story?**
+>This question asks you to judge whether or not the summary is consistent with the original story. The events and details described in the summary should not misrepresent details from the story or include details that are unsupported by the story.
 
->The summary includes the key details of the execution of six cabinet ministers, the early morning (6:30 AM), and the heavy rain. The story mentions these details in the first few sentences. 
->Further, the summary includes the key details of the minister sick with typhoid and how he was sitting on his knees when shot. All the details described in the summary are mentioned in the actual story.
+>For example, *Summary A* is consistent with the story. The last bold sentence in *Summary A* contains some commentary on the story, and we ask you to ignore commentary in evaluating consistency. The response would be "Yes" for *Summary A*.
 
-**Question 2 (for Summary B): List the top inconsistent details that shows that the summary is inconsistent with the story.**
-
->Include the inconsistent details which prompted you to select "No" for Question 1. These would be details in the summary that are not mentioned in the actual story, or are a contradiction to what occurred, or a misinterpretation of the events of the story. For this summary, a possible response is:
-
->The story states that the minister who was too weak to stand was sitting down in the puddle of water with his head on his knees versus lying in a puddle of water. This is an inconsistent detail in the summary with respect to the story.
+>*Summary B* is **not** consistent with the story as the minister was sitting in the puddle of water instead of lying in it. The response would be "No" for *Summary B*.
 
 #### Payment
 For the initial pilot study, you will be paid $35 to evaluate 33 summaries. You will be paid via Upwork once you have completed the pilot. Please allow a few days to submit the payment. 

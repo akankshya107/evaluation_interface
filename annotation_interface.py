@@ -24,6 +24,12 @@ if not to_download:
         guideline = f.read()
     st.markdown(guideline)
 
+    # Initialize the key in session state
+    if 'clicked' not in st.session_state:
+        st.session_state.clicked = False
+    def clicked():
+        st.session_state.clicked = True
+
     # open the jsonl containing all source articles into a dictionary
     # each line is a json contains two entries: "id" and "text"
     with open("responses_gpt-4_-3518530352341467729.json", "r") as f:
@@ -47,18 +53,7 @@ if not to_download:
 
     st.markdown(f"### Summary Evaluation")
 
-    binary_choice_list = ["Yes", "No"]
-    selected["consistent"] = st.radio(
-        " Is the information in the summary consistent with the story? "
-        + "The events and details described in a consistent summary should not misrepresent details of the story or make things up.",
-        options=binary_choice_list,
-        index=None,
-    )
-
-    if selected["consistent"] == "Yes":
-        selected["justification"] = st.text_area("List the key details of the summary that verify that the summary is consistent with the story.")
-    elif selected["consistent"] == "No":
-        selected["justification"] = st.text_area("List the top inconsistent details that shows that the summary is inconsistent with the story.")
+    selected["summary_info"] = st.text_area("List the key details of the summary.")
 
     # create a dictionary to store the annotation
     annotation = {
@@ -69,13 +64,28 @@ if not to_download:
         "annotation": selected,
     }
     # create a submit button and refresh the page when the button is clicked
-    if "justification" in selected and st.button("Submit"):
-        # write the annotation to a json file
+    if st.button("Submit", on_click=clicked):
         os.makedirs("data/annotations", exist_ok=True)
         with open(output_name, "w") as f:
             f.write(json.dumps(annotation) + "\n")
         # display a success message
         st.success("Annotation submitted successfully!")
+
+    if st.session_state.clicked:
+        binary_choice_list = ["Yes", "No"]
+        selected["consistent"] = st.radio(
+            "Is the information in the summary consistent with the story? "
+            + "The events and details described in a consistent summary should not misrepresent details from the story or include details that are unsupported by the story. ",
+            options=binary_choice_list,
+            index=None,
+        )
+        annotation["annotation"] = selected
+        if st.button("Submit final response"):
+            os.makedirs("data/annotations", exist_ok=True)
+            with open(output_name, "w") as f:
+                f.write(json.dumps(annotation) + "\n")
+            # display a success message
+            st.success("Annotation submitted successfully!")
 
 else:
     # We can download all files.
