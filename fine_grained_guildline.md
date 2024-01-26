@@ -34,7 +34,7 @@ This question is asked for *each line of the summary*. Mark each line as either 
 
 * The short story describes the execution of six cabinet ministers by firing squad early in the morning during heavy rain: **Yes**
 * One of the ministers is sick with typhoid fever and too weak to stand, so he is brought downstairs and shot while sitting in a puddle of water with his head on his knees: **Yes**
-* The story paints a vivid image of human suffering: **N/A**
+* The story paints a vivid image of human suffering: **N/A, just commentary**
 
 For summary B:
 
@@ -48,7 +48,7 @@ For every line marked inconsistent, provide a short explanation for your answer 
 
 This line is inconsistent with the story since the minister was sitting in the puddle of water in the story instead of lying in it.
 
-##### Question: Is the information in the summary consistent with the story?
+##### Question: Overall, is the information in the summary consistent with the story?
 
 This question asks you to judge whether or not the entire summary is consistent with the original story. The events and details described in the summary should not misrepresent details from the story or include details that are unsupported by the story.
 

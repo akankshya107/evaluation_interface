@@ -58,7 +58,7 @@ if not to_download:
     st.markdown("#### Answers")
     for i, line in enumerate(nltk.tokenize.sent_tokenize(summary_text)):
         st.markdown(f"Line {i+1}: {line}")
-        binary_choice_list = ["Yes", "No", "N/A"]
+        binary_choice_list = ["Yes", "No", "N/A, just commentary"]
         selected[f"consistent_{i}"] = st.radio(
             "Is this line in the summary consistent with the story?",
             key=hash("consistent")+i,
@@ -71,7 +71,7 @@ if not to_download:
     st.markdown("---")
     binary_choice_list = ["Yes", "No"]
     selected["consistent_full"] = st.radio(
-        "Is the information in the summary consistent with the story? "
+        "Overall, is the information in the summary consistent with the story? "
         + "The events and details described in a consistent summary should not misrepresent details from the story or include details that are unsupported by the story. ",
         options=binary_choice_list,
         index=None,
