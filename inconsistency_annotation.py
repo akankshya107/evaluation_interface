@@ -26,16 +26,17 @@ if not to_download:
 
     # open the jsonl containing all source articles into a dictionary
     # each line is a json contains two entries: "id" and "text"
-    hashes = [""]
-    source = dict()
-    with open(f"responses_gpt-4_6058720284769771861.json", "r") as f:
-        source_articles = json.load(f)
-        # turn the list of jsons into a dictionary
-        source_articles = {article["id"]: article for article in source_articles}
-        source = source_articles[summary_id]
+    hashes = ["6058720284769771861", "-3518530352341467729"]
+    source = list()
+    for hash_val in hashes:
+        with open(f"responses_gpt-4_{hash_val}.json", "r") as f:
+            source_articles = json.load(f)
+            # turn the list of jsons into a dictionary
+            source_articles = {article["id"]: article for article in source_articles}
+            source.append(source_articles[summary_id])
     # get the text of the article
-    article_text = source['story'].replace('\n', '\n\n')
-    summary_text = source['summary']
+    article_text = source[0]['story'].replace('\n', '\n\n')
+    summary_text = source[0]['summary']
 
     st.markdown("### Story")
     st.markdown(article_text)
@@ -51,7 +52,7 @@ if not to_download:
     st.markdown('##### Possible AI-generated inconsistencies detected in summary')
     regex = r"(^.*)\n[Reason]"
     
-    inconsistency_proof = source['davinci_response']["choices"][0]["message"]["content"]
+    inconsistency_proof = source[0]['davinci_response']["choices"][0]["message"]["content"] + "\n" + source[1]['davinci_response']["choices"][0]["message"]["content"]
     selected = dict()
     if re.search(regex, inconsistency_proof) is not None:
         matches = re.finditer(regex, inconsistency_proof, re.MULTILINE)
