@@ -40,7 +40,6 @@ if not to_download:
     # get the text of the article
     article_text = source_articles[summary_id]['story'].replace('\n', '\n\n')
     summary_text = source_articles[summary_id]['summary']
-    inconsistency_proof = source_articles[summary_id]['davinci_response']["choices"][0]["message"]["content"].splitlines()
 
     st.markdown("### Story")
     st.markdown(article_text)
