@@ -881,7 +881,7 @@
           "index": 0,
           "message": {
             "role": "assistant",
-            "content": "Inconsistency: There are no notable inconsistencies between the story and the summary. Both indicate the protagonist's frustration with the TV show portrayal of the murders and the inability of authorities to locate the victims' bodies despite the TV show unwittingly showcasing the correct burial site. The murderer's adoration by fans and the show writers' success and praise are also clearly stated in both the story and the summary. All main elements and sentiments are accurately reflected in the summary. Thus, no inconsistencies are observed between the story and the summary."
+            "content": "Inconsistency: There are no notable inconsistencies between the story and the summary.\nReason for inconsistency: Both indicate the protagonist's frustration with the TV show portrayal of the murders and the inability of authorities to locate the victims' bodies despite the TV show unwittingly showcasing the correct burial site. The murderer's adoration by fans and the show writers' success and praise are also clearly stated in both the story and the summary. All main elements and sentiments are accurately reflected in the summary. Thus, no inconsistencies are observed between the story and the summary."
           },
           "logprobs": null,
           "finish_reason": "stop"

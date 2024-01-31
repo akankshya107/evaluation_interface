@@ -50,25 +50,26 @@ if not to_download:
     st.markdown(f"### Summary Evaluation")
 
     st.markdown('##### Possible AI-generated inconsistencies detected in summary')
-    regex = r"(^.*)\n[Reason]"
+    regex = r"(^.*)\n+[Reason]"
     
     inconsistency_proof = source[0]['davinci_response']["choices"][0]["message"]["content"] + "\n" + source[1]['davinci_response']["choices"][0]["message"]["content"]
     selected = dict()
     if re.search(regex, inconsistency_proof) is not None:
         matches = re.finditer(regex, inconsistency_proof, re.MULTILINE)
         for idx, match in enumerate(matches):
-            st.markdown("Detected " + match.group(1))
-            binary_choice_list = ["Explain why you think this detected inconsistency is correct.", "Explain why you think this detected inconsistency is incorrect."]
-            selected[f"correct_{idx}"] = st.radio(
-                "",
-                key=hash("correct")+idx,
-                options=binary_choice_list,
-                index=None,
-                label_visibility="collapsed"
-            )
-            if selected[f"correct_{idx}"]:
-                selected[f"arg_{idx}"] = st.text_area("", key=hash("arg")+idx, label_visibility="collapsed")
-            st.markdown("---")
+            if len(match.group(1)):
+                st.markdown("Detected " + match.group(1))
+                binary_choice_list = ["Explain why you think this detected inconsistency is correct.", "Explain why you think this detected inconsistency is incorrect."]
+                selected[f"correct_{idx}"] = st.radio(
+                    "",
+                    key=hash("correct")+idx,
+                    options=binary_choice_list,
+                    index=None,
+                    label_visibility="collapsed"
+                )
+                if selected[f"correct_{idx}"]:
+                    selected[f"arg_{idx}"] = st.text_area("", key=hash("arg")+idx, label_visibility="collapsed")
+                st.markdown("---")
     else:
         st.markdown("Detected " + inconsistency_proof)
         binary_choice_list = ["Explain why you think this detected inconsistency is correct.", "Explain why you think this detected inconsistency is incorrect."]
