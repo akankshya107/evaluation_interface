@@ -58,7 +58,7 @@ if not to_download:
         matches = re.finditer(regex, inconsistency_proof, re.MULTILINE)
         for idx, match in enumerate(matches):
             st.markdown("Detected " + match.group(1))
-            binary_choice_list = ["Provide an argument that this detected inconsistency is correct.", "Provide an argument that this detected inconsistency is incorrect."]
+            binary_choice_list = ["Explain why you think this detected inconsistency is correct.", "Explain why you think this detected inconsistency is incorrect."]
             selected[f"correct_{idx}"] = st.radio(
                 "",
                 key=hash("correct")+idx,
@@ -71,7 +71,7 @@ if not to_download:
             st.markdown("---")
     else:
         st.markdown("Detected " + inconsistency_proof)
-        binary_choice_list = ["Provide an argument that this detected inconsistency is correct.", "Provide an argument that this detected inconsistency is incorrect."]
+        binary_choice_list = ["Explain why you think this detected inconsistency is correct.", "Explain why you think this detected inconsistency is incorrect."]
         selected[f"correct"] = st.radio(
             "",
             key=hash("correct"),

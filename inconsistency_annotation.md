@@ -34,24 +34,24 @@ In addition to the story and the summary, there will be AI-generated inconsisten
 
 The information in the *possible AI-generated inconsistency identified in the summary* can contain a correct detected inconsistency in the summary with respect to the story, or contain an incorrect, or invented inconsistency. This question asks you to judge whether this AI-generated inconsistency is correct. You can choose to provide an argument for and against the inconsistency.
 
-Please remember that an inconsistency between the summary and the story is detected. If you answer "Provide an argument that this detected inconsistency is correct.", you are justifying the detected inconsistency. If you answer "Provide an argument that this detected inconsistency is incorrect.", you are writing a proof against the detected inconsistency.
+Please remember that an inconsistency between the summary and the story is detected. If you answer "Explain why you think this detected inconsistency is correct.", you are justifying the detected inconsistency. If you answer "Explain why you think this detected inconsistency is incorrect.", you are writing a proof against the detected inconsistency.
 
 **Possible AI-generated inconsistency detected in summary A**
 >Inconsistency: One of the ministers ... is shot while **lying in a puddle of water** near the hospital wall.
 
-For this, you may choose to answer: "Provide an argument that this detected inconsistency is correct."
+For this, you may choose to answer: "Explain why you think this detected inconsistency is correct."
 >The story states that the minister who was too weak to stand was sitting down in the puddle of water with his head on his knees versus lying in it. Thus, the summary is inconsistent in this detail with respect to the story.
 
-Or, you may choose to answer: "Provide an argument that this detected inconsistency is incorrect."
+Or, you may choose to answer: "Explain why you think this detected inconsistency is incorrect."
 >The summary talks about the minister lying in a puddle of water. The story also mentions a sick minister who is in a puddle of water when the first shots are fired.
 
 **Possible AI-generated inconsistency identified in summary B**
 >Inconsistency: The rainwater has been collecting into pools in the hospital courtyard. 
 
-For this, you may choose to answer: "Provide an argument that this detected inconsistency is correct."
+For this, you may choose to answer: "Explain why you think this detected inconsistency is correct."
 >The story describes pools of water in the courtyard. However, it does not specify that these pools of water are from rainwater. Thus, the summary is inconsistent in this detail with respect to the story.
 
-Or, you may choose to answer: "Provide an argument that this detected inconsistency is incorrect."
+Or, you may choose to answer: "Explain why you think this detected inconsistency is incorrect."
 >The story mentions the pools of water in the courtyard. It also details that it is raining hard, which is clearly the source of the pools of water. This is a misinterpretation of the facts in the story.
 
 ##### Question: Overall, is the information in the summary consistent with the story?
