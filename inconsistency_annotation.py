@@ -1,8 +1,10 @@
 import os
 
 import streamlit as st
+import streamlit_nested_layout
 import glob
 import json
+import nltk
 import re
 
 query = st.experimental_get_query_params()
@@ -19,14 +21,20 @@ else:
 if not to_download:
     # display summarization guidelines
     # load summarization guideline from guideline.md
-    guideline_name = "inconsistency_annotation.md"
+    guideline_name = "pandm_annotations.md"
     with open(guideline_name, "r") as f:
         guideline = f.read()
     st.markdown(guideline)
+    nltk.download('punkt')
+    # Initialize the key in session state
+    if 'clicked' not in st.session_state:
+        st.session_state.clicked = False
+    def clicked():
+        st.session_state.clicked = True
 
     # open the jsonl containing all source articles into a dictionary
     # each line is a json contains two entries: "id" and "text"
-    hashes = ["6058720284769771861", "-3518530352341467729"]
+    hashes = ["2268646485413324767", "-9182807582464228672"]
     source = list()
     for hash_val in hashes:
         with open(f"responses_gpt-4_{hash_val}.json", "r") as f:
@@ -35,7 +43,7 @@ if not to_download:
             source_articles = {article["id"]: article for article in source_articles}
             source.append(source_articles[summary_id])
     # get the text of the article
-    article_text = source[0]['story'].replace('\n', '\n\n')
+    article_text = source[0]['text'].replace('\n', '\n\n')
     summary_text = source[0]['summary']
 
     st.markdown("### Story")
@@ -46,13 +54,26 @@ if not to_download:
     outfolder = f"data/annotations/{username}"
     os.makedirs(outfolder, exist_ok=True)
     output_name = os.path.join(outfolder, f"{summary_id}.jsonl")
+    selected = dict()
 
     st.markdown(f"### Summary Evaluation")
-
+    st.markdown("For each line in the summary, evaluate if it is consistent with the story.")
+    st.markdown("Along with the selected input, you can provide an explanation as to why you selected a particular answer, *if you mark the line as inconsistent to the story*. When evaluating, remember that the events and details described in a consistent summary should not misrepresent details from the story or include details that are unsupported by the story.")
+    st.markdown("#### Answers")
+    for i, line in enumerate(nltk.tokenize.sent_tokenize(summary_text)):
+        st.markdown(f"Line {i+1}: {line}")
+        binary_choice_list = ["Yes", "No", "N/A, just commentary"]
+        selected[f"consistent_{i}"] = st.radio(
+            "Is this line in the summary consistent with the story?",
+            key=hash("consistent")+i,
+            options=binary_choice_list,
+            index=None,
+        )
+    st.markdown("---")
     st.markdown('##### Possible AI-generated inconsistencies detected in summary')
     regex = r"(^.*)\n+[Reason]"
     
-    inconsistency_proof = source[0]['davinci_response']["choices"][0]["message"]["content"] + "\n" + source[1]['davinci_response']["choices"][0]["message"]["content"]
+    inconsistency_proof = source[0]['response']["choices"][0]["message"]["content"] + "\n" + source[1]['response']["choices"][0]["message"]["content"]
     selected = dict()
     if re.search(regex, inconsistency_proof) is not None:
         matches = re.finditer(regex, inconsistency_proof, re.MULTILINE)
@@ -69,7 +90,6 @@ if not to_download:
                 )
                 if selected[f"correct_{idx}"]:
                     selected[f"arg_{idx}"] = st.text_area("", key=hash("arg")+idx, label_visibility="collapsed")
-                st.markdown("---")
     else:
         st.markdown("Detected " + inconsistency_proof)
         binary_choice_list = ["Explain why you think this detected inconsistency is correct.", "Explain why you think this detected inconsistency is incorrect."]
@@ -82,16 +102,16 @@ if not to_download:
         )
         if selected[f"correct"]:
             selected[f"arg"] = st.text_area("", key=hash("arg"), label_visibility="collapsed")
-        st.markdown("---")
 
+    st.markdown("---")
     binary_choice_list = ["Yes", "No"]
-    selected["consistent"] = st.radio(
+    selected["consistent_full"] = st.radio(
         "Overall, is the information in the summary consistent with the story? "
-        + "The events and details described in a consistent summary should not misrepresent details from the story or include details that are unsupported by the story.",
+        + "The events and details described in a consistent summary should not misrepresent details from the story or include details that are unsupported by the story. ",
         options=binary_choice_list,
         index=None,
     )
-
+    selected[f"explanation_full"] = st.text_area("Provide an explanation for your selection.")
     # create a dictionary to store the annotation
     annotation = {
         "id": summary_id,
@@ -100,25 +120,24 @@ if not to_download:
         "summary": summary_text,
         "annotation": selected,
     }
-
     # create a submit button and refresh the page when the button is clicked
-    if st.button("Submit"):
-        # write the annotation to a json file
+    if st.button("Submit", on_click=clicked):
         os.makedirs("data/annotations", exist_ok=True)
         with open(output_name, "w") as f:
-            f.write(json.dumps(annotation))
+            f.write(json.dumps(annotation) + "\n")
         # display a success message
         st.success("Annotation submitted successfully!")
 
 else:
     # We can download all files.
+    st.write("Only the latest annotations are available.")
     annotations = []
     files = glob.glob(pathname="data/annotations/*/*")
     for output_name in files:
         with open(output_name, "r") as file:
             st.write(output_name)
             try:
-                annotations.append(json.loads(file.readline()))
+                annotations.append(json.loads(file.readlines()[-1]))
             except:
                 st.write("Failed")
                 continue
