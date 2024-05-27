@@ -35,6 +35,7 @@ elif any(["username" not in query, "summaryid" not in query]):
     st.markdown(guideline)
 else:
     st.set_page_config(layout="wide")
+    nltk.download('punkt')
     username = query["username"]
     summary_id = query["summaryid"]
     
