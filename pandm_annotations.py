@@ -47,12 +47,12 @@ else:
     # open the jsonl containing all source articles into a dictionary
     # each line is a json contains two entries: "id" and "text"
     source = list()
-    with open("responses_gpt-4_2268646485413324767.json", "r") as f:
+    with open("combined.json", "r") as f:
         source_articles = json.load(f)
         source_articles = {article["id"]: article for article in source_articles}
         source.append(source_articles[summary_id])
     # get the text of the article
-    article_text = source_articles[summary_id]['text'].replace('\n', '\n\n')
+    article_text = source_articles[summary_id]['story'].replace('\n', '\n\n')
     summary_text = source_articles[summary_id]['summary']
 
     with col1.container(height=700):
