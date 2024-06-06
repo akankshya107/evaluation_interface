@@ -26,11 +26,15 @@ Below are two example summaries for this story:\
 
 ---
 
-The questions will ask you to evaluate the summary with respect to the story at various levels. Firstly, the questions will ask you to evaluate the summary *line by line*. The final question will ask you to classify the entire summary as either consistent, or inconsistent to the story.
+The questions will ask you to evaluate the summary with respect to the story at various levels. Firstly, the questions will ask you to evaluate the summary *line by line*. The final question will ask you to classify the entire summary as either consistent, or inconsistent to the story. We will be providing you the responses by two annotators, which may help you answer the questions. You may agree with or discard these responses when responding to the question.
 
 ##### Question: Is this line in the summary consistent with the story?
 
-This question is asked for *each line of the summary*. Mark each line as either consistent or inconsistent to the story. The events and details described in the summary should not misrepresent details from the story or include details that are unsupported by the story. The lines in the summary that do so can be classified as inconsistent. Some lines include commentary about the story, which should be ignore when evaluating consistency. For such lines, select N/A. For summary A:
+This question is asked for *each line of the summary*. Mark each line as either consistent or inconsistent to the story. The events and details described in the summary should not misrepresent details from the story or include details that are unsupported by the story. The lines in the summary that do so can be classified as inconsistent. Some lines include commentary about the story, which should be ignore when evaluating consistency. For such lines, select N/A. 
+
+You will see the responses by two other annotators before answering. Please use your judgement with all these provided details to answer the question.
+
+For summary A:
 
 * The short story describes the execution of six cabinet ministers by firing squad early in the morning during heavy rain: **Yes**
 * One of the ministers is sick with typhoid fever and too weak to stand, so he is brought downstairs and shot while sitting in a puddle of water with his head on his knees: **Yes**
