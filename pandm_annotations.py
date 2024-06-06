@@ -29,7 +29,7 @@ if "download" in query:
 elif any(["username" not in query, "summaryid" not in query]):
     # display summarization guidelines
     # load summarization guideline from guideline.md
-    guideline_name = "fine_grained_guildline.md"
+    guideline_name = "pandm_annotations.md"
     with open(guideline_name, "r") as f:
         guideline = f.read()
     st.markdown(guideline)
@@ -86,18 +86,15 @@ else:
             for i, line in enumerate(nltk.tokenize.sent_tokenize(summary_text)):
                 st.markdown(f"Line {i+1}: {line}")
                 binary_choice_list = ["Yes", "No", "N/A, just commentary"]
-                prev = "Responses by other annotators: "
+                st.markdown("Is this line in the summary consistent with the story?")
+                st.markdown("Responses by other annotators:")
                 for id_p in choose_ids:
                     if anno_dict[ids[id_p]][summary_id][f"consistent_{i}"] == "Yes":
-                        prev += ":green[" + anno_dict[ids[id_p]][summary_id][f"consistent_{i}"]
+                        st.markdown(":green[{}]".format(anno_dict[ids[id_p]][summary_id][f"consistent_{i}"]))
                     elif anno_dict[ids[id_p]][summary_id][f"consistent_{i}"] == "No":
-                        prev += ":red[" + anno_dict[ids[id_p]][summary_id][f"consistent_{i}"]
+                        st.markdown(":red[{}] : {}".format(anno_dict[ids[id_p]][summary_id][f"consistent_{i}"], anno_dict[ids[id_p]][summary_id][f"explanation_{i}"]))
                     else:
-                        prev += ":white[" + anno_dict[ids[id_p]][summary_id][f"consistent_{i}"]
-                    prev += "], "
-                prev = prev[:-2]
-                st.markdown("Is this line in the summary consistent with the story?")
-                st.markdown(prev)
+                        st.markdown(":white[{}]".format(anno_dict[ids[id_p]][summary_id][f"consistent_{i}"]))
                 selected[f"consistent_{i}"] = st.radio(
                     "Is this line in the summary consistent with the story?",
                     key=hash("consistent")+i,

@@ -1,5 +1,5 @@
 ### Task Description
-In this task, you will be presented with a short story, along with a summary of the story. Please read both the story and the summary carefully. You will be asked to assess whether the summary is consistent with the story. We will also include some AI-generated inconsistencies of the summary with respect to the story, which *may or may not* be correct. We will then ask you to evaluate if this generated inconsistency is correct, or if it is incorrect.  Make sure to submit to record your answers.
+In this task, you will be presented with a short story, along with a summary of the story. Please read both the story and the summary carefully. You will be asked to assess whether the summary is consistent with the story. Make sure to submit to record your answers.
 
 **Warning:** Some of the stories may contain content that readers could find offensive, disturbing, or otherwise unsettling. If you do not feel comfortable with this, please feel free to decline the task.
 
@@ -26,11 +26,7 @@ Below are two example summaries for this story:\
 
 ---
 
-The questions will ask you to evaluate the summary with respect to the story at various levels. Firstly, the questions will ask you to evaluate the summary *line by line*. 
-
-Then, you will be provided with AI-generated inconsistencies of the summary with respect to the story. This would be provided for every story and summary and would contain at least one detected inconsistent detail identified between the summary and the story.
-
-The final question will ask you to classify the entire summary as either consistent, or inconsistent to the story.
+The questions will ask you to evaluate the summary with respect to the story at various levels. Firstly, the questions will ask you to evaluate the summary *line by line*. The final question will ask you to classify the entire summary as either consistent, or inconsistent to the story.
 
 ##### Question: Is this line in the summary consistent with the story?
 
@@ -46,29 +42,11 @@ For summary B:
 * The summary includes the key details of the minister sick with typhoid and how he was too weak to stand: **Yes**
 * The summary talks about the minister lying in a puddle of water when shot: **No**
 
-##### Question: Evaluate the AI-generated inconsistency.
+##### Question (for any answers marked No): Provide an explanation for your selection.
 
-The information in the *possible AI-generated inconsistency identified in the summary* can contain a correct detected inconsistency in the summary with respect to the story, or contain an incorrect, or invented inconsistency. This question asks you to judge whether this AI-generated inconsistency is correct. You can choose to provide an argument for and against the inconsistency.
+For every line marked inconsistent, provide a short explanation for your answer selection. For example, for the line from **Summary B**: "The summary talks about the minister lying in a puddle of water when shot.", a possible response is:
 
-Please remember that an inconsistency between the summary and the story is detected. If you answer "Explain why you think this detected inconsistency is correct.", you are justifying the detected inconsistency. If you answer "Explain why you think this detected inconsistency is incorrect.", you are writing a proof against the detected inconsistency.
-
-**Possible AI-generated inconsistency detected in summary A**
->Inconsistency: One of the ministers ... is shot while **lying in a puddle of water** near the hospital wall.
-
-For this, you may choose to answer: "Explain why you think this detected inconsistency is correct."
->The story states that the minister who was too weak to stand was sitting down in the puddle of water with his head on his knees versus lying in it. Thus, the summary is inconsistent in this detail with respect to the story.
-
-Or, you may choose to answer: "Explain why you think this detected inconsistency is incorrect."
->The summary talks about the minister lying in a puddle of water. The story also mentions a sick minister who is in a puddle of water when the first shots are fired.
-
-**Possible AI-generated inconsistency identified in summary B**
->Inconsistency: The rainwater has been collecting into pools in the hospital courtyard. 
-
-For this, you may choose to answer: "Explain why you think this detected inconsistency is correct."
->The story describes pools of water in the courtyard. However, it does not specify that these pools of water are from rainwater. Thus, the summary is inconsistent in this detail with respect to the story.
-
-Or, you may choose to answer: "Explain why you think this detected inconsistency is incorrect."
->The story mentions the pools of water in the courtyard. It also details that it is raining hard, which is clearly the source of the pools of water. This is a misinterpretation of the facts in the story.
+This line is inconsistent with the story since the minister was sitting in the puddle of water in the story instead of lying in it.
 
 ##### Question: Overall, is the information in the summary consistent with the story?
 
@@ -81,7 +59,7 @@ For example, *Summary A* is consistent with the story. The last bold sentence in
 An additional input is provided to you for any explanation you may want to provide for your answer. This may be an explanation that all the lines of the summary are consistent with the story, or that one or more lines are inconsistent with the story, or some other explanation.
 
 ### Payment
-For the initial pilot study, you will be paid $35 to evaluate 33 summaries. You will be paid via Upwork once you have completed the pilot. Please allow a few days to submit the payment. 
+You will be paid via Upwork once you have completed the pilot. Please allow a few days to submit the payment. 
 
 **Thank you so much for participating in our study!! We would love to hear any feedback that you may have about this task!**
 
