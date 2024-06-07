@@ -38,6 +38,7 @@ else:
     nltk.download('punkt')
     username = query["username"]
     summary_id = query["summaryid"]
+    choose_ids = [int(id_p) for id_p in query["choose_ids"].split(',')]
     
     if 'clicked' not in st.session_state:
         st.session_state.clicked = False
@@ -77,7 +78,6 @@ else:
                 for annotation in annotations:
                     if annotation["username"] in ids:
                         anno_dict[annotation["username"]][annotation["id"]] = annotation["annotation"]
-            choose_ids = [0, 1]
             st.markdown("""---""")
             st.markdown(f"### Summary Evaluation")
             st.markdown("For each line in the summary, evaluate if it is consistent with the story.")
@@ -101,8 +101,6 @@ else:
                     options=binary_choice_list,
                     index=None,
                 )
-                if selected[f"consistent_{i}"] == "No":
-                    selected[f"explanation_{i}"] = st.text_area("Provide an explanation for your selection.", key=hash("explanation")+i)
                 st.markdown("""---""")
             binary_choice_list = ["Yes", "No"]
             selected["consistent_full"] = st.radio(

@@ -7,6 +7,8 @@ If you encounter any problems or have other feedback, please contact columbia.nl
 
 By participating in this study, you confirm that you are (1) 18 years or older, (2) currently residing in the US, and (3) have read and understand the information above and agree to participate. By clicking submit you consent to participate in this study. If you do not wish to participate, do not click submit.
 
+---
+
 ### Detailed Instructions with Example
 Please read the story carefully and try to understand the points that are central to the plot. 
 
@@ -46,11 +48,16 @@ For summary B:
 * The summary includes the key details of the minister sick with typhoid and how he was too weak to stand: **Yes**
 * The summary talks about the minister lying in a puddle of water when shot: **No**
 
-##### Question (for any answers marked No): Provide an explanation for your selection.
+---
 
-For every line marked inconsistent, provide a short explanation for your answer selection. For example, for the line from **Summary B**: "The summary talks about the minister lying in a puddle of water when shot.", a possible response is:
+For the previous responses seen:
+For every line marked inconsistent, you may see a short explanation for the annotator's answer selection. For example, for the line from **Summary B**, if an annotator previously selected "No": "The summary talks about the minister lying in a puddle of water when shot.", a possible response is:
 
 This line is inconsistent with the story since the minister was sitting in the puddle of water in the story instead of lying in it.
+
+Note that previous annotators could have selected "No" for any other lines with some explanation.
+
+---
 
 ##### Question: Overall, is the information in the summary consistent with the story?
 
