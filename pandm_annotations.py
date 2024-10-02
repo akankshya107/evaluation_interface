@@ -10,35 +10,35 @@ query = st.query_params
 to_download = ""
 if "download" in query:
     # We can download all files.
-    annotations = []
+    annotations = dict()
     files = glob.glob(pathname="data/annotations/*/*")
     for output_name in files:
         with open(output_name, "r") as file:
-            st.write(output_name)
+            summid = output_name.split('/')[-1].strip(".json")
+            st.write(summid)
             try:
-                annotations.append(json.loads(file.readline()))
+                annotations[summid] = json.load(file)
             except:
                 st.write("Failed")
                 continue
 
     btn = st.download_button(
             label="Download all annotations",
-            data=json.dumps(annotations, indent=2),
+            data=json.dumps(annotations, indent=4),
             file_name="annotations.json",
         )
-elif any(["username" not in query, "summaryid" not in query]):
-    # display summarization guidelines
-    # load summarization guideline from guideline.md
-    guideline_name = "pandm_annotations.md"
-    with open(guideline_name, "r") as f:
-        guideline = f.read()
-    st.markdown(guideline)
+# elif any(["username" not in query, "summaryid" not in query]):
+#     # display summarization guidelines
+#     # load summarization guideline from guideline.md
+#     guideline_name = "fine_grained_guildline.md"
+#     with open(guideline_name, "r") as f:
+#         guideline = f.read()
+#     st.markdown(guideline)
 else:
     st.set_page_config(layout="wide")
     nltk.download('punkt')
     username = query["username"]
     summary_id = query["summaryid"]
-    choose_ids = [int(id_p) for id_p in query["choose_ids"].split(',')]
     
     if 'clicked' not in st.session_state:
         st.session_state.clicked = False
@@ -48,80 +48,60 @@ else:
     col1, col2 = st.columns(2)
     # open the jsonl containing all source articles into a dictionary
     # each line is a json contains two entries: "id" and "text"
-    source = list()
-    with open("combined.json", "r") as f:
+    with open(f"storysumm.json", "r") as f:
         source_articles = json.load(f)
-        source_articles = {article["id"]: article for article in source_articles}
-        source.append(source_articles[summary_id])
     # get the text of the article
     article_text = source_articles[summary_id]['story'].replace('\n', '\n\n')
     summary_text = source_articles[summary_id]['summary']
+    errors = source_articles[summary_id]['errors']
+    explanations = source_articles[summary_id]['explanations']
 
     with col1.container(height=700):
         with st.container():
             st.markdown("### Story")
             st.markdown(article_text)
+            st.markdown("---")
     with col2.container(height=700):
         with st.container():
-            st.markdown("### Summary")
-            st.markdown(summary_text)
-
             outfolder = f"data/annotations/{username}"
             os.makedirs(outfolder, exist_ok=True)
-            output_name = os.path.join(outfolder, f"{summary_id}.jsonl")
+            output_name = os.path.join(outfolder, f"{summary_id}.json")
             selected = dict()
-            
-            ids = ["5540027", "7778335", "8784498"]
-            anno_dict = {id: {} for id in ids}
-            with open("annotations_pl_latest.json", "r") as openfile:
-                annotations = json.load(openfile)
-                for annotation in annotations:
-                    if annotation["username"] in ids:
-                        anno_dict[annotation["username"]][annotation["id"]] = annotation["annotation"]
-            st.markdown("""---""")
-            st.markdown(f"### Summary Evaluation")
-            st.markdown("For each line in the summary, evaluate if it is consistent with the story.")
-            st.markdown("Along with the selected input, you can provide an explanation as to why you selected a particular answer, *if you mark the line as inconsistent to the story*. When evaluating, remember that the events and details described in a consistent summary should not misrepresent details from the story or include details that are unsupported by the story.")
+
+            st.markdown(f"### Lines/Claims from the LLM-generated Summary")
+            if source_articles[summary_id]['label'] == 0:
+                st.markdown(f"The summary is judged: :red[Inconsistent] with difficulty: {source_articles[summary_id]['difficulty']}")
+            else:
+                st.markdown(f"The summary is judged: :green[Consistent] with difficulty: {source_articles[summary_id]['difficulty']}")
+            st.markdown("For each line in the summary, annotate if it is ambiguous to evaluate with respect to the story.")
             st.markdown("#### Answers")
-            for i, line in enumerate(nltk.tokenize.sent_tokenize(summary_text)):
+            cnt = 0
+            for i, line in enumerate(summary_text):
                 st.markdown(f"Line {i+1}: {line}")
+                if errors[i] == 0:
+                    st.markdown(f":red[Reason for inconsistency: {explanations[cnt]}]")
+                    cnt += 1
                 binary_choice_list = ["Yes", "No", "N/A, just commentary"]
-                st.markdown("Is this line in the summary consistent with the story?")
-                st.markdown("Responses by other annotators:")
-                for id_p in choose_ids:
-                    if anno_dict[ids[id_p]][summary_id][f"consistent_{i}"] == "Yes":
-                        st.markdown(":green[{}]".format(anno_dict[ids[id_p]][summary_id][f"consistent_{i}"]))
-                    elif anno_dict[ids[id_p]][summary_id][f"consistent_{i}"] == "No":
-                        st.markdown(":red[{}] : {}".format(anno_dict[ids[id_p]][summary_id][f"consistent_{i}"], anno_dict[ids[id_p]][summary_id][f"explanation_{i}"]))
-                    else:
-                        st.markdown(":white[{}]".format(anno_dict[ids[id_p]][summary_id][f"consistent_{i}"]))
-                selected[f"consistent_{i}"] = st.radio(
-                    "Is this line in the summary consistent with the story?",
-                    key=hash("consistent")+i,
+                selected[f"ambiguous_{i}"] = st.radio(
+                    "Is this claim ambiguous to evaluate?",
+                    key=hash("ambiguous")+i,
                     options=binary_choice_list,
                     index=None,
                 )
-                st.markdown("""---""")
-            binary_choice_list = ["Yes", "No"]
-            selected["consistent_full"] = st.radio(
-                "Overall, is the information in the summary consistent with the story? "
-                + "The events and details described in a consistent summary should not misrepresent details from the story or include details that are unsupported by the story. ",
-                options=binary_choice_list,
-                index=None,
-            )
-            selected[f"explanation_full"] = st.text_area("Provide an explanation for your selection.")
+                if selected[f"ambiguous_{i}"] == "Yes":
+                    selected[f"explanation_{i}"] = st.text_area("Provide an explanation for why this line is ambiguous to evaluate.", key=hash("explanation")+i)
+                else:
+                    selected[f"explanation_{i}"] = ""
+
             # create a dictionary to store the annotation
-            annotation = {
-                "id": summary_id,
-                "username": username,
-                "story": article_text,
-                "summary": summary_text,
-                "annotation": selected,
-            }
+            annotation = source_articles[summary_id]
+            annotation["username"] = username
+            annotation["annotation"] = [selected[f"ambiguous_{i}"] for i in range(len(summary_text))]
+            annotation["annotation_explanation"] = [selected[f"explanation_{i}"] for i in range(len(summary_text))]
             # create a submit button and refresh the page when the button is clicked
             if st.button("Submit", on_click=clicked):
                 os.makedirs("data/annotations", exist_ok=True)
                 with open(output_name, "w") as f:
-                    f.write(json.dumps(annotation) + "\n")
+                    json.dump(annotation, f, indent=4)
                 # display a success message
                 st.success("Annotation submitted successfully!")
