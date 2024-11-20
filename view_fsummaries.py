@@ -27,6 +27,7 @@ with open(f"fsummaries.json", "r") as f:
 # get the text of the article
 article_text = source_articles[summary_id]['story'].replace('\n', '\n\n')
 summary_text = source_articles[summary_id]['fsummary']
+actual_subj = source_articles[summary_id]['subj']
 is_subj = source_articles[summary_id]['fsummary_subj']
 themes = source_articles[summary_id]['fsummary_themes']
 
@@ -38,11 +39,17 @@ with col1.container(height=700):
 with col2.container(height=700):
     with st.container():
         selected = dict()
-        for i, line in enumerate(summary_text):
-            if peek == '1':
+        if peek == '1':
+            for i, line in enumerate(summary_text):
                 if is_subj[i] == 1:
-                    st.markdown(f":red[Theme {themes[i]}: {line}]")
+                    if actual_subj[i][0] == is_subj[i]:
+                        st.markdown(f":red[Theme {themes[i]}: {line}]")
+                    else:
+                        st.markdown(f":red[Objective swapped to Theme {themes[i]} Subjective, {line}]")
                 else:
-                    st.markdown(f":green[{line}]")
-            else:
-                st.markdown(line)
+                    if actual_subj[i][0] == is_subj[i]:
+                        st.markdown(f":green[{line}]")
+                    else:
+                        st.markdown(f":green[Subjective Theme {actual_subj[i][1]} swapped to Objective: {line}]")
+        else:
+            st.markdown(" ".join(summary_text))
