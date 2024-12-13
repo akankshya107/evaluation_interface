@@ -11,7 +11,7 @@ import random
 
 query = st.query_params
 format_1 = [1, 28, 18, 12, 22]
-format_2 = [4, 7, 3, 6, 15]
+format_2 = [4, 7, 3, 6, 15, 23]
 format_3 = [14, 21, 10, 30, 24]
 
 to_download = ""
