@@ -48,12 +48,11 @@ else:
     # open the jsonl containing all source articles into a dictionary
     # each line is a json contains two entries: "id" and "text"
     source = list()
-    with open(f"responses_gpt-4_2268646485413324767.json", "r") as f:
+    with open(f"storysumm.json", "r") as f:
         source_articles = json.load(f)
-        source_articles = {article["id"]: article for article in source_articles}
         source.append(source_articles[summary_id])
     # get the text of the article
-    article_text = source_articles[summary_id]['text'].replace('\n', '\n\n')
+    article_text = source_articles[summary_id]['story'].replace('\n', '\n\n')
     summary_text = source_articles[summary_id]['summary']
 
     with col1.container(height=700):
@@ -63,7 +62,7 @@ else:
     with col2.container(height=700):
         with st.container():
             st.markdown("### Summary")
-            st.markdown(summary_text)
+            st.markdown(" ".join(summary_text))
 
             outfolder = f"data/annotations/{username}"
             os.makedirs(outfolder, exist_ok=True)
@@ -72,9 +71,9 @@ else:
 
             st.markdown(f"### Summary Evaluation")
             st.markdown("For each line in the summary, evaluate if it is consistent with the story.")
-            st.markdown("Along with the selected input, you can provide an explanation as to why you selected a particular answer, *if you mark the line as inconsistent to the story*. When evaluating, remember that the events and details described in a consistent summary should not misrepresent details from the story or include details that are unsupported by the story.")
+            st.markdown("Along with the selected input, you can provide a rewrite of the original line, *if you mark the line as inconsistent to the story*. When evaluating, remember that the events and details described in a consistent summary should not misrepresent details from the story or include details that are unsupported by the story.")
             st.markdown("#### Answers")
-            for i, line in enumerate(nltk.tokenize.sent_tokenize(summary_text)):
+            for i, line in enumerate(summary_text):
                 st.markdown(f"Line {i+1}: {line}")
                 binary_choice_list = ["Yes", "No", "N/A, just commentary"]
                 selected[f"consistent_{i}"] = st.radio(
@@ -84,17 +83,17 @@ else:
                     index=None,
                 )
                 if selected[f"consistent_{i}"] == "No":
-                    selected[f"explanation_{i}"] = st.text_area("Provide an explanation for your selection.", key=hash("explanation")+i)
+                    selected[f"rewrite_{i}"] = st.text_area("Provide an rewrite for this line.", key=hash("rewrite")+i)
 
-            st.markdown("---")
-            binary_choice_list = ["Yes", "No"]
-            selected["consistent_full"] = st.radio(
-                "Overall, is the information in the summary consistent with the story? "
-                + "The events and details described in a consistent summary should not misrepresent details from the story or include details that are unsupported by the story. ",
-                options=binary_choice_list,
-                index=None,
-            )
-            selected[f"explanation_full"] = st.text_area("Provide an explanation for your selection.")
+            # st.markdown("---")
+            # binary_choice_list = ["Yes", "No"]
+            # selected["consistent_full"] = st.radio(
+            #     "Overall, is the information in the summary consistent with the story? "
+            #     + "The events and details described in a consistent summary should not misrepresent details from the story or include details that are unsupported by the story. ",
+            #     options=binary_choice_list,
+            #     index=None,
+            # )
+            # selected[f"explanation_full"] = st.text_area("Provide an explanation for your selection.")
             # create a dictionary to store the annotation
             annotation = {
                 "id": summary_id,

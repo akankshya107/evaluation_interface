@@ -1,5 +1,5 @@
 ### Task Description
-In this task, you will be presented with a short story, along with a summary of the story. Please read both the story and the summary carefully. You will be asked to assess whether the summary is consistent with the story. Make sure to submit to record your answers.
+In this task, you will be presented with a short story, along with a summary of the story. Please read both the story and the summary carefully. You will be asked to assess whether each summary line is consistent with the story, and to rewrite any inconsistent lines. Make sure to submit to record your answers.
 
 **Warning:** Some of the stories may contain content that readers could find offensive, disturbing, or otherwise unsettling. If you do not feel comfortable with this, please feel free to decline the task.
 
@@ -42,21 +42,11 @@ For summary B:
 * The summary includes the key details of the minister sick with typhoid and how he was too weak to stand: **Yes**
 * The summary talks about the minister lying in a puddle of water when shot: **No**
 
-##### Question (for any answers marked No): Provide an explanation for your selection.
+##### Question (for any answers marked No): Provide an rewrite for this line.
 
-For every line marked inconsistent, provide a short explanation for your answer selection. For example, for the line from **Summary B**: "The summary talks about the minister lying in a puddle of water when shot.", a possible response is:
+For every line marked inconsistent, provide a rewrite of the original line. For example, for the line from **Summary B**: "The summary talks about the minister lying in a puddle of water when shot.", a possible response is:
 
-This line is inconsistent with the story since the minister was sitting in the puddle of water in the story instead of lying in it.
-
-##### Question: Overall, is the information in the summary consistent with the story?
-
-This question asks you to judge whether or not the entire summary is consistent with the original story. The events and details described in the summary should not misrepresent details from the story or include details that are unsupported by the story.
-
-For example, *Summary A* is consistent with the story. The last bold sentence in *Summary A* contains some commentary on the story, and we ask you to ignore commentary in evaluating consistency. The response would be "Yes" for *Summary A*.
-
-*Summary B* is **not** consistent with the story as the minister was sitting in the puddle of water instead of lying in it. The response would be "No" for *Summary B*.
-
-An additional input is provided to you for any explanation you may want to provide for your answer. This may be an explanation that all the lines of the summary are consistent with the story, or that one or more lines are inconsistent with the story, or some other explanation.
+The summary talks about the minister sitting in a puddle of water when shot.
 
 ### Payment
 You will be paid via Upwork once you have completed the pilot. Please allow a few days to submit the payment. 
